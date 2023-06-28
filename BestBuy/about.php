@@ -1,7 +1,7 @@
 <?php
-session_start(); // Start the session
+session_start(); 
 if (!isset($_SESSION['id'])) {
-    header("Location: ../index.php"); // Redirect to the login page
+    header("Location: ../index.php"); 
     exit();
 }
 ?>
@@ -33,9 +33,7 @@ if (!isset($_SESSION['id'])) {
                         <li><a href="contactus.php">ContactUs</a></li>
                         <li><a  href="../logout.php">Logout</a></li>
                         ';
-                      }
-                      
-                    
+                      } 
                 ?>
             </ul>
             <div class="contact_logo">

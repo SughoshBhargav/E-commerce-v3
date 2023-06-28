@@ -38,7 +38,7 @@ if (!isset($_SESSION['id'])) {
                 <li><a class="active-page" href="home.php">Home</a></li>
                 <?php
                     if ((isset($_SESSION['adminloggedIN']) && $_SESSION['adminloggedIN'] === true)) {
-                        echo '<li><a class="active-page" href="dashboard.php">Dashboard</a></li>';
+                        echo '<li><a  href="dashboard.php">Dashboard</a></li>';
                       }
                         else{
                             echo '<li><a  href="about.php">About</a></li>

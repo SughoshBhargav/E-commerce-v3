@@ -1,7 +1,3 @@
-
-<!DOCTYPE html>
-<html lang="en">
-
 <?php
 $sname = "localhost";
 $uname = "root";
@@ -9,9 +5,9 @@ $password = "";
 $db_name = "test_db";
 
 $conn = mysqli_connect($sname, $uname, $password, $db_name);
-session_start(); // Start the session
+session_start(); 
 if (!isset($_SESSION['id'])) {
-    header("Location: ../index.php"); // Redirect to the login page
+    header("Location: ../index.php"); 
     exit();
 }
 
@@ -73,29 +69,14 @@ if (isset($_GET["edit"])) {
 
 ?>
 
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Better Buys | Dashboard</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="https://kit.fontawesome.com/b970073805.js" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    #editButton {
-        color: black;
-        font-weight: bold;
-    }
-
-    #deleteButton {
-        color: black;
-        font-weight: bold;
-    }
-
-
-    .update-btn{
-        margine-left:0;
-    }
-    </script>
 </head>
 
 <body>
@@ -104,6 +85,8 @@ if (isset($_GET["edit"])) {
             <ul>
                 <li><a href="home.php">Home</a></li>
                 <li><a class="active-page" href="dashboard.php">Dashboard</a></li>
+                <li class="logout"><a  href="../logout.php">Logout</a></li>
+
                
             </ul>
             <div class="contact_logo">
@@ -113,22 +96,24 @@ if (isset($_GET["edit"])) {
     </header>
 
     <main>
+    
         <form method="post" action="dashboard.php" >
-    <input type="hidden" name="id" value="<?php echo isset($_GET['edit']) ? $_GET['edit'] : ''; ?>">
-    <label for="imageURL">Image URL:</label>
-    <input type="text" name="imageURL" id="imageURL" required value="<?php echo isset($_GET['edit']) ? $row['image_url'] : ''; ?>"><br>
+            <input type="hidden" name="id" value="<?php echo isset($_GET['edit']) ? $_GET['edit'] : ''; ?>">
+            <label for="imageURL">Image URL:</label>
+            
+            <input type="text" name="imageURL" id="imageURL" required value="<?php echo isset($_GET['edit']) ? $row['image_url'] : ''; ?>"><br>
 
-    <label for="text1">Text 1:</label>
-    <input type="text" name="text1" id="text1" required value="<?php echo isset($_GET['edit']) ? $row['text_1'] : ''; ?>"><br>
+            <label for="text1">Text 1:</label>
+            <input type="text" name="text1" id="text1" required value="<?php echo isset($_GET['edit']) ? $row['text_1'] : ''; ?>"><br>
 
-    <label for="text2">Text 2:</label>
-    <input type="text" name="text2" id="text2" required value="<?php echo isset($_GET['edit']) ? $row['text_2'] : ''; ?>"><br>
+            <label for="text2">Text 2:</label>
+            <input type="text" name="text2" id="text2" required value="<?php echo isset($_GET['edit']) ? $row['text_2'] : ''; ?>"><br>
 
-    <label for="text3">Text 3:</label>
-    <input type="text" name="text3" id="text3" required value="<?php echo isset($_GET['edit']) ? $row['text_3'] : ''; ?>"><br>
+            <label for="text3">Text 3:</label>
+            <input type="text" name="text3" id="text3" required value="<?php echo isset($_GET['edit']) ? $row['text_3'] : ''; ?>"><br>
 
-    <button class="update-btn btn btn-success"  type="submit" name="submit">Insert / Update</button>
-</form>
+            <button class="update-btn btn btn-success"  type="submit" name="submit">Insert / Update</button>
+        </form>
 
 
         
