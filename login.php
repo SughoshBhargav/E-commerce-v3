@@ -15,7 +15,7 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
 	$pass = validate($_POST['password']);
 
 	if($uname === 'admin' && $pass === 'admin')
-		$_SESSION['loggedIN'] = true;
+		$_SESSION['adminloggedIN'] = true;
 
 	if (empty($uname)) {
 		header("Location: index.php?error=User Name is required");
@@ -26,7 +26,6 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
 	}else{
         $pass = md5($pass);
 
-        
 		$sql = "SELECT * FROM users WHERE user_name='$uname' AND password='$pass'";
 
 		$result = mysqli_query($conn, $sql);
@@ -37,7 +36,8 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
             	$_SESSION['user_name'] = $row['user_name'];
             	$_SESSION['name'] = $row['name'];
             	$_SESSION['id'] = $row['id'];
-            	header("Location: BestBuy/index.php");
+				
+            	header("Location: BestBuy/home.php");
 		        exit();
             }else{
 				header("Location: index.php?error=Incorect User name or password");

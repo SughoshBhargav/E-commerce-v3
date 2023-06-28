@@ -39,7 +39,7 @@ nav ul li a {
     padding: 8px;
 }
 
-.avctive-page,
+.active-page,
 nav ul li a:hover {
     transition-duration: 200ms;
     color: rgb(233, 228, 243);
@@ -121,6 +121,7 @@ a:active {
     padding: 0%;
     padding-right: 10px;
     margin: 0%;
+    margin-left: 50px;
 }
 
 .search input:hover {
@@ -135,6 +136,7 @@ a:active {
 .search input {
     padding: 5px 20px;
     margin-right: 20px;
+    margin-left: 20px;
     height: 22px;
     width: 35rem;
     border-radius: 10px;
@@ -162,6 +164,7 @@ img {
     border: 3px solid #212A3E;
     height: 50px;
     width: 55px;
+    margin-left: 0px;
     transition: transform 0.7s;
 }
 

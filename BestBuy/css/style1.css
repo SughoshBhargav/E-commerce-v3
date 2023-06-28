@@ -39,7 +39,7 @@ nav ul li a {
     padding: 8px;
 }
 
-.avctive-page,
+.active-page,
 nav ul li a:hover {
     transition-duration: 200ms;
     color: rgb(233, 228, 243);

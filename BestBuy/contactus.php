@@ -1,14 +1,17 @@
-<?php
-// PHP code here
 
-$emailSent = false; // Flag to track if the email was sent
+<?php
+
+session_start(); // Start the session
+if (!isset($_SESSION['id'])) {
+    header("Location: ../index.php"); // Redirect to the login page
+    exit();
+}
+
+$emailSent = false; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Check if the form is submitted
-    
-    // Check if the email address field is not empty
+
     if (!empty($_POST['firstname'])) {
-        // Call the JavaScript function to send email
         echo '<script>sendEmail();</script>';
         $emailSent = true;
     }
@@ -31,10 +34,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <nav>
                 
                 <ul>
-                    <li><a  href="index.php">Home</a></li>
+                    <li><a  href="home.php">Home</a></li>
                     <li><a  href="about.php">About</a></li>
-                    <li><a class="avctive-page" href="contactus.php">ContactUs</a></li>
+                    <li><a class="active-page" href="contactus.php">ContactUs</a></li>
+                    <li><a  href="../logout.php">Logout</a></li>
+
                 </ul>
+
                 <div class="contact_logo">
                     <img class="logoimg" src="img/logo.jpg" alt="Website Logo">
                 </div>
@@ -88,12 +94,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 '&su=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
 
             window.open(gmailUrl);
-            var emailWindow = window.open(gmailUrl);
-            emailWindow.onfocus = function () {
-                setTimeout(function () {
-                    document.getElementById("successContainer").style.display = "block";
-                }, 5000); // Delay of 5000 milliseconds (5 seconds)
-            };
         }
     </script>
     </body>

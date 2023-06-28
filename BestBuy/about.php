@@ -1,3 +1,11 @@
+<?php
+session_start(); // Start the session
+if (!isset($_SESSION['id'])) {
+    header("Location: ../index.php"); // Redirect to the login page
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,18 +20,19 @@
     <header>
         <nav>
             <ul>
-                <li><a href="index.php">Home</a></li>
+                <li><a href="home.php">Home</a></li>
                 
                 <?php
-                session_start();
                     if ((isset($_SESSION['loggedIN']) && $_SESSION['loggedIN'] === true)) {
                         echo '<li><a class="active-page" href="dashboard.php">Dashboard</a></li>';
 
                       } 
                       else{
 
-                        echo '<li><a class="avctive-page" href="about.php">About</a></li>
-                        <li><a href="contactus.php">ContactUs</a></li>';
+                        echo '<li><a class="active-page" href="about.php">About</a></li>
+                        <li><a href="contactus.php">ContactUs</a></li>
+                        <li><a  href="../logout.php">Logout</a></li>
+                        ';
                       }
                       
                     
@@ -40,8 +49,7 @@
             <h1>About Us</h1>
 
             <p class="text">
-                Lorem ipsum        
-                dolor sit amet consectetur adipisicing elit. Doloribus velit ducimus, enim inventore earum, eligendi nostrum pariatur necessitatibus eius dicta a voluptates sit deleniti autem error eos totam nisi neque voluptates sit deleniti autem error eos totam nisi neque.
+            BetterBuys is your trusted online retailer for all your shopping needs. We offer high-quality products, exceptional service, and a seamless shopping experience. Shop with confidence and discover a world of convenience at BetterBuys.
             </p>
 
             <div class="details">

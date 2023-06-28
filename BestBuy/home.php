@@ -5,21 +5,23 @@
 $sname= "localhost";
 $unmae= "root";
 $password = "";
-
 $db_name = "test_db";
 
 $conn = mysqli_connect($sname, $unmae, $password, $db_name);
-session_start();
+    
+session_start(); 
+if (!isset($_SESSION['id'])) {
+    header("Location: ../index.php"); 
+    exit();
+}
+
 
 ?>
-
-
-
 
 <head>
     <meta charset="UTF-8">
     <title>Better Buys</title>
-    <link rel="stylesheet" href="css/style1.css">
+    <link rel="stylesheet" href="css/style.css">
     <script src="https://kit.fontawesome.com/b970073805.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,22 +35,15 @@ session_start();
     <header>
         <nav>
             <ul>
-                <li><a class="avctive-page" href="index.php">Home</a></li>
-                
-
+                <li><a class="active-page" href="home.php">Home</a></li>
                 <?php
-                    if ((isset($_SESSION['loggedIN']) && $_SESSION['loggedIN'] === true)) {
+                    if ((isset($_SESSION['adminloggedIN']) && $_SESSION['adminloggedIN'] === true)) {
                         echo '<li><a class="active-page" href="dashboard.php">Dashboard</a></li>';
-
-                      } 
-                    
+                      }
                         else{
-
                             echo '<li><a  href="about.php">About</a></li>
                                 <li><a href="contactus.php">ContactUs</a></li>';
                           }
-                      
-                    
                 ?>
 
             </ul>
@@ -56,26 +51,11 @@ session_start();
                 <input type="" name="search" id="" placeholder="Search for products,brand and more">
                 <i class="fas fa-search"></i>
             </div>
-    
-            <?php   
-                if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
-                ?>
                 <ul class="logout"><li><a href="../logout.php">Logout</a></li></ul>
-                
-                <?php 
-                    }else{
-                        header("Location: ../index.php");
-                        exit(); 
-                    }
-                ?>
 
             <div class="logo">
                 <img class="logoimg" src="img/logo.jpg" alt="Website Logo">
             </div>
-
-
-            
-
         </nav>
     </header>
 
@@ -87,7 +67,6 @@ session_start();
             <div class="card">
                 <h2>Join The Cricket Fun </h2>
                 <div class="cards">
-                
                     
                     <?php
                     $sql = "SELECT * FROM images";

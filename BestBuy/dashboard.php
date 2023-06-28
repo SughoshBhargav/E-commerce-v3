@@ -1,3 +1,7 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
 <?php
 $sname = "localhost";
 $uname = "root";
@@ -5,7 +9,11 @@ $password = "";
 $db_name = "test_db";
 
 $conn = mysqli_connect($sname, $uname, $password, $db_name);
-
+session_start(); // Start the session
+if (!isset($_SESSION['id'])) {
+    header("Location: ../index.php"); // Redirect to the login page
+    exit();
+}
 
 function sanitize($data)
 {
@@ -65,8 +73,6 @@ if (isset($_GET["edit"])) {
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -96,7 +102,7 @@ if (isset($_GET["edit"])) {
     <header>
         <nav>
             <ul>
-                <li><a href="index.php">Home</a></li>
+                <li><a href="home.php">Home</a></li>
                 <li><a class="active-page" href="dashboard.php">Dashboard</a></li>
                
             </ul>
@@ -107,7 +113,6 @@ if (isset($_GET["edit"])) {
     </header>
 
     <main>
-        <!-- Add your form to insert/update details -->
         <form method="post" action="dashboard.php" >
     <input type="hidden" name="id" value="<?php echo isset($_GET['edit']) ? $_GET['edit'] : ''; ?>">
     <label for="imageURL">Image URL:</label>
@@ -160,8 +165,6 @@ if ($result->num_rows > 0) {
     echo "No records found";
 }
 ?>
-
-
   
     </main>
 
