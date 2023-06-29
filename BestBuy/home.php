@@ -5,7 +5,7 @@
 $sname= "localhost";
 $unmae= "root";
 $password = "";
-$db_name = "test_db";
+$db_name = "bestbuy";
 
 $conn = mysqli_connect($sname, $unmae, $password, $db_name);
     
@@ -13,6 +13,21 @@ session_start();
 if (!isset($_SESSION['id'])) {
     header("Location: ../index.php"); 
     exit();
+}
+
+if(isset($_SESSION['adminloggedIN'])){
+
+    echo '<script>
+
+        var secrectKey = prompt("Enter the SecrectKey");
+        if(secrectKey == "admin"){
+            window.location.href = "home.php"
+        }
+        else{
+            window.location.href = "../index.php"
+        }
+        </script>
+    ';
 }
 
 
