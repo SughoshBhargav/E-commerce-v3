@@ -38,7 +38,7 @@ if (!isset($_SESSION['id'])) {
                 <li><a class="active-page" href="home.php">Home</a></li>
                 <?php
                     if ((isset($_SESSION['adminloggedIN']) && $_SESSION['adminloggedIN'] === true)) {
-                        echo '<li><a href="dashboard.php">Dashboard</a></li>';
+                        echo '<li><a  href="dashboard.php">Dashboard</a></li>';
                       }
                         else{
                             echo '<li><a  href="about.php">About</a></li>
@@ -381,11 +381,11 @@ if (!isset($_SESSION['id'])) {
     </main>
 
     <footer>
-        <p>
-            <i class="ficon fa-brands fa-twitter"></i>
-            <i class="ficon fa-brands fa-github"></i>
-            <i class="fa-brands fa-square-twitter "></i>
-        </p>
+    <p>
+        <a href="https://linkedin.com"><i class="ficon fa-brands fa-linkedin"></i></a>
+        <a href="https://github.com/SughoshBhargav"><i class="ficon fa-brands fa-github"></i></a>
+        <a href="https://twitter.com/"><i class="fa-brands fa-square-twitter"></i></a>
+    </p>
     </footer>
 </body>
 

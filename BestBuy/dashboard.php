@@ -1,3 +1,5 @@
+
+
 <?php
 $sname = "localhost";
 $uname = "root";
@@ -7,22 +9,17 @@ $db_name = "test_db";
 $conn = mysqli_connect($sname, $uname, $password, $db_name);
 session_start(); 
 if (!isset($_SESSION['id'])) {
-    header("Location: ../index.php"); 
+    header("Location: ../index.php");
     exit();
 }
 
-function sanitize($data)
-{
-    global $conn;
-    return mysqli_real_escape_string($conn, trim($data));
-}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $id = sanitize($_POST["id"]);
-    $imageURL = sanitize($_POST["imageURL"]);
-    $text1 = sanitize($_POST["text1"]);
-    $text2 = sanitize($_POST["text2"]);
-    $text3 = sanitize($_POST["text3"]);
+    $id = ($_POST["id"]);
+    $imageURL = ($_POST["imageURL"]);
+    $text1 = ($_POST["text1"]);
+    $text2 = ($_POST["text2"]);
+    $text3 = ($_POST["text3"]);
 
     if (!empty($id)) {
         $sql = "UPDATE images SET image_url='$imageURL', text_1='$text1', text_2='$text2', text_3='$text3' WHERE id=$id";
@@ -39,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 if (isset($_GET["delete"])) {
-    $id = sanitize($_GET["delete"]);
+    $id = ($_GET["delete"]);
 
     $sql = "DELETE FROM images WHERE id=$id";
 
@@ -52,7 +49,7 @@ if (isset($_GET["delete"])) {
 
 
 if (isset($_GET["edit"])) {
-  $id = sanitize($_GET["edit"]);
+  $id = ($_GET["edit"]);
 
   $sql = "SELECT * FROM images WHERE id=$id";
   $result = $conn->query($sql);
@@ -71,12 +68,14 @@ if (isset($_GET["edit"])) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Better Buys | Dashboard</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="https://kit.fontawesome.com/b970073805.js" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </script>
 </head>
 
 <body>
@@ -85,9 +84,8 @@ if (isset($_GET["edit"])) {
             <ul>
                 <li><a href="home.php">Home</a></li>
                 <li><a class="active-page" href="dashboard.php">Dashboard</a></li>
-                <li class="logout"><a  href="../logout.php">Logout</a></li>
+                <li class="logout"><a href="../logout.php">Logout</a></li>
 
-               
             </ul>
             <div class="contact_logo">
                 <img class="logoimg" src="img/logo.jpg" alt="Website Logo">
@@ -96,11 +94,9 @@ if (isset($_GET["edit"])) {
     </header>
 
     <main>
-    
         <form method="post" action="dashboard.php" >
             <input type="hidden" name="id" value="<?php echo isset($_GET['edit']) ? $_GET['edit'] : ''; ?>">
             <label for="imageURL">Image URL:</label>
-            
             <input type="text" name="imageURL" id="imageURL" required value="<?php echo isset($_GET['edit']) ? $row['image_url'] : ''; ?>"><br>
 
             <label for="text1">Text 1:</label>
@@ -114,51 +110,50 @@ if (isset($_GET["edit"])) {
 
             <button class="update-btn btn btn-success"  type="submit" name="submit">Insert / Update</button>
         </form>
-
-
         
-<?php
-$sql = "SELECT * FROM images";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    ?>
-    <div class="cards-container-dash">
-        <div class="cards-dashboard-dash">
-            <?php
-            while ($row = $result->fetch_assoc()) {
-                ?>
-                <div class="card-item-dash">
-                    <img class="img-dash" src="<?php echo $row['image_url']; ?>" alt="">
-                    <div class="lines">
-                        <p><?php echo $row['text_1']; ?></p>
-                        <p><?php echo $row['text_2']; ?></p>
-                        <p><?php echo $row['text_3']; ?></p>
-                        <div class="edit-delete-btn">
-                            <button id="editButton" class="btn btn-admin btn-primary" onclick="editRecord(<?php echo $row['id']; ?>)">Edit</button>
-                            <button id="deleteButton" class="btn btn-admin btn-danger" onclick="confirmDelete(<?php echo $row['id']; ?>)">Delete</button>
-                        </div>
-                    </div>
-                </div>
-                <?php
-            }
-            ?>
-        </div>
-    </div>
     <?php
-} else {
-    echo "No records found";
-}
-?>
+        $sql = "SELECT * FROM images";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            ?>
+            <div class="cards-container-dash">
+                <div class="cards-dashboard-dash">
+                    <?php
+                    while ($row = $result->fetch_assoc()) {
+                        ?>
+                        <div class="card-item-dash">
+                            <img class="img-dash" src="<?php echo $row['image_url']; ?>" alt="">
+                            <div class="lines">
+                                <p><?php echo $row['text_1']; ?></p>
+                                <p><?php echo $row['text_2']; ?></p>
+                                <p><?php echo $row['text_3']; ?></p>
+                                <div class="edit-delete-btn">
+                                    <button id="editButton" class="btn btn-admin btn-primary" onclick="editRecord(<?php echo $row['id']; ?>)">Edit</button>
+                                    <button id="deleteButton" class="btn btn-admin btn-danger" onclick="confirmDelete(<?php echo $row['id']; ?>)">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                    ?>
+                </div>
+            </div>
+    <?php
+        } 
+    else {
+        echo "No records found";
+    }
+    ?>
   
     </main>
 
     <footer>
-        <p>
-            <i class="fab fa-twitter"></i>
-            <i class="fab fa-github"></i>
-            <i class="fab fa-twitter-square"></i>
-        </p>
+    <p>
+        <a href="https://linkedin.com"><i class="ficon fa-brands fa-linkedin"></i></a>
+        <a href="https://github.com/SughoshBhargav"><i class="ficon fa-brands fa-github"></i></a>
+        <a href="https://twitter.com/"><i class="fa-brands fa-square-twitter"></i></a>
+    </p>
     </footer>
 
     <script>

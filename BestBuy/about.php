@@ -33,7 +33,9 @@ if (!isset($_SESSION['id'])) {
                         <li><a href="contactus.php">ContactUs</a></li>
                         <li><a  href="../logout.php">Logout</a></li>
                         ';
-                      } 
+                      }
+                      
+                    
                 ?>
             </ul>
             <div class="contact_logo">
@@ -58,11 +60,11 @@ if (!isset($_SESSION['id'])) {
         </div>
     </div>
     <footer>
-        <p>
-          <i class="ficon fa-brands fa-twitter"></i>
-          <i class="ficon fa-brands fa-github"></i>
-          <i class="fa-brands fa-square-twitter "></i>
-        </p>
+    <p>
+        <a href="https://linkedin.com"><i class="ficon fa-brands fa-linkedin"></i></a>
+        <a href="https://github.com/SughoshBhargav"><i class="ficon fa-brands fa-github"></i></a>
+        <a href="https://twitter.com/"><i class="fa-brands fa-square-twitter"></i></a>
+    </p>
       </footer>
 </body>
 </html>

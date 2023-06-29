@@ -1,11 +1,17 @@
 body {
 	background: #458ec3;
+	background-image: url("BestBuy/img/index.jpg") ;
+	background-size: 1520px 800px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	height: 100vh;
+	margin-left: 600px;
 	flex-direction: column;
+	overflow-y: hidden;
+
 }
+
 
 *{
 	font-family: sans-serif;
@@ -49,7 +55,7 @@ button {
 	border: none;
 }
 button:hover{
-	opacity: .7;
+	opacity: .9;
 }
 .error {
    background: #F2DEDE;

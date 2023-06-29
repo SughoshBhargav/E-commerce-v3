@@ -4,7 +4,6 @@
 session_start(); 
 if (!isset($_SESSION['id'])) {
     header("Location: ../index.php"); 
-    exit();
 }
 
 $emailSent = false; 
@@ -16,7 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $emailSent = true;
     }
 }
-
 ?>
 
     <!DOCTYPE html>
@@ -24,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="css/style1.css">
+        <link rel="stylesheet" href="css/style.css">
         <script src="https://kit.fontawesome.com/b970073805.js" crossorigin="anonymous"></script>
         
         <title>Better Buys | Contact</title>
@@ -75,14 +73,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         
         <footer class="flex-all-center">
-            <footer class="flex-all-center">
-                <p>
-                    <i class="ficon fa-brands fa-twitter"></i>
-                    <i class="ficon fa-brands fa-github"></i>
-                    <i class="fa-brands fa-square-twitter "></i>
-                </p>
+        <footer class="flex-all-center">
+    <p>
+        <a href="https://linkedin.com"><i class="ficon fa-brands fa-linkedin"></i></a>
+        <a href="https://github.com/SughoshBhargav"><i class="ficon fa-brands fa-github"></i></a>
+        <a href="https://twitter.com/"><i class="fa-brands fa-square-twitter"></i></a>
+    </p>
+</footer>
 
-            </footer>
         </footer>
         <script>
         function sendEmail() {

@@ -1,18 +1,17 @@
 <?php 
+
 session_start(); 
+if (!isset($_SESSION['id'])) {
+    header("Location: ../index.php"); 
+}
 include "db_conn.php";
 
 if (isset($_POST['uname']) && isset($_POST['password'])) {
 
-	function validate($data){
-       $data = trim($data);
-	   $data = stripslashes($data);
-	   $data = htmlspecialchars($data);
-	   return $data;
-	}
+	
 
-	$uname = validate($_POST['uname']);
-	$pass = validate($_POST['password']);
+	$uname = ($_POST['uname']);
+	$pass = ($_POST['password']);
 
 	if($uname === 'admin' && $pass === 'admin')
 		$_SESSION['adminloggedIN'] = true;
@@ -34,8 +33,9 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
 			$row = mysqli_fetch_assoc($result);
             if ($row['user_name'] === $uname && $row['password'] === $pass) {
             	$_SESSION['user_name'] = $row['user_name'];
+            	$_SESSION['name'] = $row['name'];
             	$_SESSION['id'] = $row['id'];
-
+				
             	header("Location: BestBuy/home.php");
 		        exit();
             }else{
