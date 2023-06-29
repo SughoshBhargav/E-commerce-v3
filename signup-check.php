@@ -6,19 +6,11 @@ if (
     isset($_POST['uname']) && isset($_POST['password']) && isset($_POST['re_password'])
 ) {
 
-    function validate($data)
-    {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-    }
+    $uname = ($_POST['uname']);
+    $pass = ($_POST['password']);
+    $re_pass = ($_POST['re_password']);
 
-    $uname = validate($_POST['uname']);
-    $pass = validate($_POST['password']);
-    $re_pass = validate($_POST['re_password']);
-
-    $user_data = 'uname=' . $uname . '&name=' . $name;
+    $user_data = 'uname=' . $uname ;
 
     if (empty($uname)) {
         header("Location: signup.php?error=User Name is required&$user_data");
@@ -37,7 +29,7 @@ if (
         exit();
     } else {
 
-        // hashing the password
+        
         $pass = md5($pass);
 
         $sql = "SELECT * FROM users WHERE user_name='$uname' ";
@@ -47,7 +39,7 @@ if (
             header("Location: signup.php?error=The username is taken, try another&$user_data");
             exit();
         } else {
-            $sql2 = "INSERT INTO users(user_name, password, name) VALUES('$uname', '$pass', '$uname')";
+            $sql2 = "INSERT INTO users(user_name, password) VALUES('$uname', '$pass')";
             $result2 = mysqli_query($conn, $sql2);
             if ($result2) {
                 header("Location: signup.php?success=Your account has been created successfully");

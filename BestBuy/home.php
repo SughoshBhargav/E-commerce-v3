@@ -60,6 +60,7 @@ if (!isset($_SESSION['id'])) {
     </header>
 
     <main>
+
         <div class="container">
             <div class="slider">
                 <img class="img1" src="https://source.unsplash.com/1200x300/?mobile,laptop" alt="">
@@ -92,9 +93,7 @@ if (!isset($_SESSION['id'])) {
                 </div>
                 
                 
-                
-
-
+            
                 <!-- <div class="cards">
 
                     <div class="card-item">

@@ -4,6 +4,7 @@
 session_start(); 
 if (!isset($_SESSION['id'])) {
     header("Location: ../index.php"); 
+    exit();
 }
 
 $emailSent = false; 
@@ -49,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <form id = "emailForm" method="post">
 
                 <label for="email">Email</label>
-                <input type="text" id="email" name="firstname" placeholder="Enter your Email">
+                <input type="text" id="email" name="firstname" placeholder="Enter your Email" required>
 
                 <label for="name">Name</label>
                 <input type="text" id="name" name="lastname" placeholder="Enter Name">
