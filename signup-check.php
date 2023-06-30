@@ -10,7 +10,7 @@ if (
     $pass = ($_POST['password']);
     $re_pass = ($_POST['re_password']);
 
-    $user_data = 'uname=' . $uname ;
+    $user_data = 'uname=' . $uname  ;
 
     if (empty($uname)) {
         header("Location: signup.php?error=User Name is required&$user_data");

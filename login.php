@@ -15,7 +15,9 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
 
 	if($uname === 'admin' && $pass === 'admin')
 		$_SESSION['adminloggedIN'] = true;
+		$_SESSION['admin'] = false;
 
+		
 	if (empty($uname)) {
 		header("Location: index.php?error=User Name is required");
 	    exit();

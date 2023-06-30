@@ -15,19 +15,18 @@ if (!isset($_SESSION['id'])) {
     exit();
 }
 
-if(isset($_SESSION['adminloggedIN'])){
-
+if (isset($_SESSION['adminloggedIN']) && $_SESSION['adminloggedIN'] === true && $_SESSION['admin'] === false) {
     echo '<script>
-
-        var secrectKey = prompt("Enter the SecrectKey");
-        if(secrectKey == "admin"){
-            window.location.href = "home.php"
+        var expectedKey = "admin";
+        var userInput = prompt("Enter Secrect Key :");
+        if (userInput === expectedKey) {
+            window.location.href = "home.php";
+            exit();
+        } else {
+            window.location.href = "../index.php";
         }
-        else{
-            window.location.href = "../index.php"
-        }
-        </script>
-    ';
+    </script>';
+    $_SESSION['admin'] = true;
 }
 
 

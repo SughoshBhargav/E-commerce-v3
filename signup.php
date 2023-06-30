@@ -5,7 +5,7 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-     <form action="signup-check.php" method="post">
+     <form action="signup-check.php" method="POST">
      	<h2>SIGN UP</h2>
      	<?php if (isset($_GET['error'])) { ?>
      		<p class="error"><?php echo $_GET['error']; ?></p>
@@ -16,7 +16,7 @@
           <?php } ?>
 
           <label>User Name</label>
-          <?php if (isset($_GET['uname'])) { ?>
+          <?php if (isset($_POST['uname'])) { ?>
                <input type="text" 
                       name="uname" 
                       placeholder="User Name"
@@ -25,6 +25,7 @@
                <input type="text" 
                       name="uname" 
                       placeholder="User Name"><br>
+                      
           <?php }?>
 
 
